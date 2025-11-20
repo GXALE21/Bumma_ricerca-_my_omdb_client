@@ -3,31 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ricerca Film</title>
+    <title>OMDB Search - Cerca Film</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Ricerca Film</h1>
+            <h1>🎬 OMDB Film Search</h1>
+            <p>Cerca il tuo film preferito come su Google</p>
         </header>
-        
-        <main>
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Cerca un film...">
-                <button id="searchButton">Cerca</button>
+
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Inserisci il titolo del film...">
+                <button id="searchBtn">Cerca</button>
             </div>
+        </div>
+
+        <div id="loading" class="hidden">
+            <p>Ricerca in corso...</p>
+        </div>
+
+        <!-- Griglia dei risultati -->
+        <div id="resultsContainer" class="hidden">
+            <h2 id="resultsTitle">Risultati della ricerca</h2>
             
-            <div id="resultsContainer" class="results-container">
-                <!-- I risultati verranno inseriti qui dinamicamente -->
+            <div id="moviesGrid" class="movies-grid">
+                <!-- I film appariranno qui -->
             </div>
-            
-            <div id="pagination" class="pagination">
-                <!-- La paginazione verrà inserita qui dinamicamente -->
+
+            <!-- Paginazione -->
+            <div id="pagination" class="pagination hidden">
+                <button id="prevBtn" class="page-btn">← Precedente</button>
+                <span id="pageInfo" class="page-info">Pagina 1 di 1</span>
+                <button id="nextBtn" class="page-btn">Successiva →</button>
             </div>
-        </main>
+        </div>
+
+        <div id="error" class="hidden">
+            <p>Nessun film trovato. Prova con un altro titolo.</p>
+        </div>
     </div>
-    
+
     <script src="app.js"></script>
 </body>
 </html>
