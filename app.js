@@ -1,6 +1,5 @@
 const API_KEY = 'c00ac79a';
 
-// Elementi DOM
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const resultsContainer = document.getElementById('resultsContainer');
@@ -13,23 +12,23 @@ const nextBtn = document.getElementById('nextBtn');
 const pageInfo = document.getElementById('pageInfo');
 const resultsTitle = document.getElementById('resultsTitle');
 
-// Variabili globali
+
 let currentSearch = '';
 let currentPage = 1;
 let totalResults = 0;
 let totalPages = 0;
 
-// Funzione per fixare le immagini (PROXY)
+
 function getSafeImageUrl(posterUrl) {
     if (posterUrl === 'N/A' || !posterUrl) {
         return null;
     }
     
-    // Usa un proxy CORS per evitare blocchi
+    
     return `https://images.weserv.nl/?url=${encodeURIComponent(posterUrl.replace('http://', 'https://'))}&w=300&h=450&fit=cover`;
 }
 
-// Funzione principale di ricerca
+
 async function searchMovies(page = 1) {
     const searchTerm = searchInput.value.trim();
     
@@ -73,7 +72,7 @@ async function searchMovies(page = 1) {
     }
 }
 
-// Funzione per visualizzare i film in griglia - VERSIONE CORRETTA
+
 function displayMovies(movies) {
     moviesGrid.innerHTML = '';
 
@@ -105,7 +104,7 @@ function displayMovies(movies) {
     });
 }
 
-// Funzione per gestire errori delle immagini
+
 function handleImageError(img) {
     console.log('❌ Immagine non caricata:', img.src);
     img.style.display = 'none';
@@ -113,7 +112,7 @@ function handleImageError(img) {
     posterDiv.innerHTML = '<div class="no-poster">🎬<br>Immagine<br>non caricata</div>';
 }
 
-// Funzione per mostrare dettagli film
+
 async function showMovieDetails(imdbID) {
     try {
         showElement(loading);
@@ -121,7 +120,7 @@ async function showMovieDetails(imdbID) {
         const movie = await response.json();
 
         if (movie.Response === 'True') {
-            // Crea un modal più bello invece di alert
+            
             const modal = document.createElement('div');
             modal.style.cssText = `
                 position: fixed;
@@ -159,7 +158,7 @@ async function showMovieDetails(imdbID) {
     }
 }
 
-// Funzione per gestire la paginazione
+
 function updatePagination(total) {
     totalResults = parseInt(total);
     totalPages = Math.ceil(totalResults / 10);
@@ -175,7 +174,7 @@ function updatePagination(total) {
     }
 }
 
-// Funzioni helper
+
 function showElement(element) {
     element.classList.remove('hidden');
 }
@@ -190,7 +189,7 @@ function showError() {
     hideElement(pagination);
 }
 
-// Event Listeners
+
 searchBtn.addEventListener('click', () => searchMovies(1));
 searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
